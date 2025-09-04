@@ -15,11 +15,11 @@ public class Todocontroller {
         this.todoService = todoService;
     }
     @PostMapping
-    public List<TodoModel> create(TodoModel todo){
+    public List<TodoModel> create(@RequestBody TodoModel todo){
         return todoService.create(todo);
     }
     @PutMapping
-    public List<TodoModel> update(TodoModel todo){
+    public List<TodoModel> update(@RequestBody TodoModel todo){
         return todoService.update(todo);
     }
     @DeleteMapping("{id}")
