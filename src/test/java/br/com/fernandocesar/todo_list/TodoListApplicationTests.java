@@ -12,7 +12,7 @@ class TodoListApplicationTests {
 	@Autowired
 	private WebTestClient webTestClient;
 	@Test
-	void contextLoads() {
+	void TestCreateTodosucess() {
 		var todo = new TodoModel(null, null, false, 0);
 		webTestClient
 			.post()
@@ -21,7 +21,14 @@ class TodoListApplicationTests {
 			.exchange()
 			.expectStatus().isOk()
 			.expectBody()
-			.json("$").isArray()
+			.jsonPath("$").isArray()
+			.jsonPath("$.lenght()").isEqualTo(1)
+			.jsonPath("$[0].descricao").isEqualTo(todo.getDescricao())
+			.jsonPath("$[0].prioridade").isEqualTo(todo.getPrioridade())
+			.jsonPath("$[0].nome").isEqualTo(todo.getNome())
+			.jsonPath("$[0].realizado").isEqualTo(todo.isRealizado());
+
+			
 			
 	}
 
